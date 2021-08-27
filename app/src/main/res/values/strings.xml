@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Covid-19 Tracker</string>
+    <string name="total_cases">Total Cases</string>
+    <string name="search">Search</string>
+    <string name="country">Country</string>
+    <string name="cases">Cases</string>
+    <string name="_0">0</string>
+    <string name="recovered">Recovered</string>
+    <string name="critical">Critical</string>
+    <string name="active">Active</string>
+    <string name="today_cases">Today Cases</string>
+    <string name="total_deaths">Total Deaths</string>
+    <string name="today_deaths">Today Deaths</string>
+    <string name="track_states">Track States</string>
+    <string name="find_vaccination_center">Find Vaccination Center</string>
+    <string name="deaths">Deaths</string>
+</resources>
