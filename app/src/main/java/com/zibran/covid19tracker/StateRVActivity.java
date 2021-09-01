@@ -1,5 +1,6 @@
 package com.zibran.covid19tracker;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,11 +33,11 @@ public class StateRVActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Dialog stateDialog;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_state_rvactivity);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         recyclerView = findViewById(R.id.state_RV);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

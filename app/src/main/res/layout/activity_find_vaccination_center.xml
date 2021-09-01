@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="5dp"
     tools:context=".FindVaccinationCenterActivity">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/idEditPinCode"
-        android:inputType="number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:hint="Enter pincode"
-        android:layout_margin="5dp"/>
+        android:inputType="number"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/idBtnSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
+        android:id="@+id/idBtnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"
         android:layout_alignParentEnd="true"
         android:layout_margin="3dp"
-        android:padding="2dp"
-        android:background="@color/colorPrimary"
-        android:id="@+id/idBtnSearch"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="5dp"
+        android:text="@string/search"
+        android:elevation="3sp"
         android:textColor="@color/color_white"
-        android:layout_alignParentRight="true"/>
+        app:layout_constraintBottom_toBottomOf="@+id/idEditPinCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/idEditPinCode"
+        tools:targetApi="lollipop" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_below="@id/idEditPinCode"
-        android:id="@+id/idRV"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idEditPinCode" />
+
     <ProgressBar
         android:id="@+id/idLoadingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:visibility="gone"
-        android:layout_centerInParent="true"/>
+        app:layout_constraintBottom_toBottomOf="@+id/idRV"
+        app:layout_constraintEnd_toEndOf="@+id/idRV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/idRV" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

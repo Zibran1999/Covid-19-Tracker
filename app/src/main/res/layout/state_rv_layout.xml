@@ -8,7 +8,8 @@
     android:layout_marginEnd="8dp"
     android:layout_marginTop="8dp"
     android:elevation="3dp"
-    app:cardCornerRadius="10sp">
+    app:cardCornerRadius="10sp"
+    tools:targetApi="lollipop">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Uttar Pradesh"
+            android:text="@string/uttar_pradesh"
             android:textColor="@color/color_black"
             android:textSize="18sp"
             android:textStyle="bold"

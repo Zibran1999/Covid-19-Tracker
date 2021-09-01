@@ -41,7 +41,6 @@ public class FindVaccinationCenterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         setContentView(R.layout.activity_find_vaccination_center);
         pinCodeEdt = findViewById(R.id.idEditPinCode);
@@ -57,14 +56,16 @@ public class FindVaccinationCenterActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(view -> {
             String pinCode = pinCodeEdt.getText().toString();
             if (pinCode.length() != 6) {
-                Toast.makeText(this, "Please Enter valid pin code", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please Enter valid pin code",
+                        Toast.LENGTH_SHORT).show();
             } else {
                 centerRVModelList.clear();
                 Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog pickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog pickerDialog = new DatePickerDialog(this,
+                        new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                         loadingBar.setVisibility(View.VISIBLE);
@@ -79,12 +80,15 @@ public class FindVaccinationCenterActivity extends AppCompatActivity {
     }
 
     private void getAppointmentDetails(String pinCode, String dateStr) {
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=" + pinCode + "&date=" + dateStr, null, response -> {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode="
+                        + pinCode + "&date=" + dateStr, null, response -> {
             loadingBar.setVisibility(View.GONE);
             try {
                 JSONArray jsonArray = response.getJSONArray("centers");
                 if (jsonArray.length() == 0) {
-                    Toast.makeText(this, "No Vaccination center available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "No Vaccination center available",
+                            Toast.LENGTH_SHORT).show();
                 }
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -97,7 +101,10 @@ public class FindVaccinationCenterActivity extends AppCompatActivity {
                     int availabilityCapacity = sessionObj.getInt("available_capacity");
                     int ageLimit = sessionObj.getInt("min_age_limit");
                     String vaccineName = sessionObj.getString("vaccine");
-                    centerRVModelList.add(new CenterRVModel(centerName, centerAddress, centerFromTime, centerToTime, feeType, ageLimit, vaccineName, availabilityCapacity));
+                    centerRVModelList.add(new CenterRVModel(centerName,
+                            centerAddress, centerFromTime, centerToTime,
+                            feeType, ageLimit, vaccineName,
+                            availabilityCapacity));
                 }
 
                 centerRVAdapter.notifyDataSetChanged();

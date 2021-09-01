@@ -42,7 +42,6 @@ public class AffectedCountries extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_affected_countries);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         edtSearch = findViewById(R.id.edtSearch);
         listView = findViewById(R.id.listView);
@@ -94,6 +93,7 @@ public class AffectedCountries extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.GET, url,
                 response -> {
 
+            countryModelsList.clear();
                     try {
                         JSONArray jsonArray = new JSONArray(response);
                         for (int i = 0; i < jsonArray.length(); i++) {

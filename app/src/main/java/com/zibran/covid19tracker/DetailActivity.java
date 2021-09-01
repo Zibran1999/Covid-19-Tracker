@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
-
     TextView tvCountry,tvCases , tvRecovered , tvCritical , tvActive ,tvTodayCases , tvTotalDeaths , tvTodayDeaths;
     Button stateWiseBtn,findVaccinationCenterBtn;
     String country;
@@ -22,11 +21,10 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
         Intent intent=getIntent();
         int positionCountry = intent.getIntExtra("position", 0);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Details of "+AffectedCountries.countryModelsList.get(positionCountry).getCountry());
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Details of "+
+                AffectedCountries.countryModelsList.get(positionCountry).getCountry());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         tvCountry=findViewById(R.id.tvCountry);
@@ -39,7 +37,6 @@ public class DetailActivity extends AppCompatActivity {
         tvTodayDeaths=findViewById(R.id.tvTodayDeaths);
         stateWiseBtn =findViewById(R.id.state_wise_cases_btn);
         findVaccinationCenterBtn= findViewById(R.id.find_vaccination_center_btn);
-
         country = AffectedCountries.countryModelsList.get(positionCountry).getCountry();
         if (country.equals("India")){
             stateWiseBtn.setVisibility(View.VISIBLE);
@@ -54,15 +51,10 @@ public class DetailActivity extends AppCompatActivity {
         tvTodayCases.setText(AffectedCountries.countryModelsList.get(positionCountry).getTodayCases());
         tvTotalDeaths.setText(AffectedCountries.countryModelsList.get(positionCountry).getDeaths());
         tvTodayDeaths.setText(AffectedCountries.countryModelsList.get(positionCountry).getTodayDeaths());
-        stateWiseBtn.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),StateRVActivity.class)));
-        findVaccinationCenterBtn.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),FindVaccinationCenterActivity.class)));
-
-
-
-
-
-
-
+        stateWiseBtn.setOnClickListener(view ->
+                startActivity(new Intent(getApplicationContext(),StateRVActivity.class)));
+        findVaccinationCenterBtn.setOnClickListener(view ->
+                startActivity(new Intent(getApplicationContext(),FindVaccinationCenterActivity.class)));
 
     }
     @Override
